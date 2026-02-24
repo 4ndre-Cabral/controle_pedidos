@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'screens/solicitar_page.dart';
 import 'screens/pedidos_page.dart';
 import 'services/excel_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Skip Excel initialization on web since dart:io is not available
-  if (!kIsWeb) {
-    await ExcelService().init();
-  }
+  await ExcelService().init();
   runApp(const MyApp());
 }
 
