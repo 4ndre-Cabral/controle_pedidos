@@ -5,7 +5,12 @@ import 'services/excel_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await ExcelService().init();
+  // Try to initialize Excel service, but don't fail if platform doesn't support it
+  try {
+    await ExcelService().init();
+  } catch (e) {
+    print('Excel service initialization failed (this is expected on web/some platforms): $e');
+  }
   runApp(const MyApp());
 }
 
